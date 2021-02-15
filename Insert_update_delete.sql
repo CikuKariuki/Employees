@@ -26,14 +26,25 @@ update departments set dept_name = 'Data Analysis' where dept_no = 'd010';
 select * from departments order by dept_no desc;
 
 # DELETE STATEMENT
+/* Delete without a where clause will delete everything although the auto-increment values 
+will not be reset. */
 delete from departments where dept_no = 'd010';
 select * from departments order by dept_no desc;
+alter table departments add dept_manager varchar(40);
+select * from departments;
+# Deleting a column
+alter table departments drop column dept_manager;
+select * from departments;
 
 # TRUNCATE V DROP
 create table if not exists dept_dup(dept_no varchar(5), dept_name varchar(40));
 insert into dept_dup select * from departments;
 select * from dept_dup;
 truncate dept_dup;
+
+# Deletes all entries and resets auto-increment values
 select * from dept_dup;
+
+# Deletes the table completely
 drop table dept_dup;
 # Refresh list of tables from schema. The table should be non-existent. 
