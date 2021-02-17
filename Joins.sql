@@ -86,6 +86,10 @@ from employees e
 join dept_manager dm on dm.emp_no = e.emp_no
 group by gender; 
 
+# SELF JOIN (Joining certain rows of a table with other rows of the same table)
+select distinct e1.* from emp_manager e1
+join emp_manager e2 on e1.emp_no = e2.manager_no;
+
 # UNION V UNION ALL
 select * from 
 (select e.emp_no, e.first_name, e.last_name, null as dept_no, null as from_date
@@ -93,3 +97,4 @@ from employees e where last_name = 'Denis'
 union select null as emp_no, null as first_name, 
 null as last_name, dm.dept_no, dm.from_date from dept_manager dm)
  as a order by -a.emp_no desc;
+ 
